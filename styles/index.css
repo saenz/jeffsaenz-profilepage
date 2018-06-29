@@ -2,6 +2,7 @@ html {
   font: 100%/1.45 'PT Sans',sans-serif;
   box-sizing: border-box;
   overflow-y: scroll;
+  -webkit-tap-highlight-color: transparent;
 }
 body {
   color: #222;
@@ -26,6 +27,11 @@ h1 {
     text-rendering: optimizeLegibility;
     font-size: 2rem;
     line-height: 1;
+}
+
+[role=button], a, area, button, input, label, select, summary, textarea {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
 }
 
 .container {
@@ -202,8 +208,8 @@ footer {
 }
 @media (min-width: 768px) {
   .socialIconsLink {
-    width: 2rem;
-    height: 2rem;
+    width: 2.4rem;
+    height: 2.4rem;
   }
 }
 .sr-only {
@@ -222,5 +228,5 @@ footer {
   top: 50%;
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
-  //font-size: 1rem;
+  font-size: 1.4rem;
 }
