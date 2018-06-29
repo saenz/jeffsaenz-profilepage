@@ -8,6 +8,6 @@ A responsive vanilla html/css bio page for yours truly. This is part of my portf
 * [Google PT Sans Web Font](https://fonts.google.com/specimen/PT+Sans)
 * [Font Awesome](https://fontawesome.com/) Icons for social buttons
 
-## Screen shot
+## Screen Shot
 
 ![](screenshots/page.png)
