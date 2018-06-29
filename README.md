@@ -1,6 +1,7 @@
 # jeffsaenz-profilepage
 
 A responsive vanilla html/css bio page for yours truly. This is part of my portfolio. 
+It's currently hosted [on surge](http://needy-cake.surge.sh/).
 
 ## Features
 
