@@ -4,6 +4,17 @@ html {
   overflow-y: scroll;
   -webkit-tap-highlight-color: transparent;
 }
+* {
+    box-sizing: inherit;
+}
+
+*:before {
+    box-sizing: inherit;
+}
+
+*:after {
+    box-sizing: inherit;
+}
 body {
   color: #222;
   background: #f5f5f5;
@@ -35,12 +46,11 @@ h1 {
 }
 
 .container {
-  margin: 1rem auto;
   background-color: #fff;
   overflow: hidden;
   box-shadow: 0 1px 6px rgba(32,33,36,0.28);
-  border-radius: 8px;
   max-width: 632px;
+  margin: 0 auto;
 }
 
 .cardTop {
@@ -56,13 +66,6 @@ h1 {
   padding: 16px 0px;
   margin-left: 10px;
   margin-right: 16px;
-}
-
-@media (max-width: 640px) {
-  .container {
-    margin-right: 20px;
-    margin-left: 20px;
-  }
 }
 
 .fullName {
@@ -84,8 +87,8 @@ h1 {
 .avatarWrapper {
   position: relative;
   height: 63px;
-  margin-left: 16px;
-  margin-right: 16px;
+  margin-left: 1rem;
+  margin-right: .5rem;
 }
 
 .avatarWrapper > img {
@@ -181,6 +184,9 @@ h1 {
 }
 footer {
   text-align: center;
+  background-color: #708090;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
 }
 .socialIcons {
   list-style-type: none;
@@ -229,4 +235,97 @@ footer {
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
   font-size: 1.4rem;
+}
+.contact {
+  width: 100%;
+  padding-right: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+input {
+  overflow: visible;
+}
+.contactWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.contactText {
+  width: 100%;
+  order: 2;
+  margin-top: 1rem;
+}
+.contactText .name {
+  color: rgba(0,0,0,0.87);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1rem;
+}
+.contactText .city {
+  color: rgba(0,0,0,0.54);
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1rem;
+}
+.contactForm {
+  width:100;
+  margin: 0 auto;
+  align-items: flex-start
+  order: 1;
+}
+@media (min-width: 35em) {
+  .contactText {
+    width: 33%;
+    order: 1;
+    margin-top: 0;
+  }
+  .contactForm {
+    width: 66%;
+    order: 2;
+  }
+}
+.contactForm input, .contactForm textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: rgb(18, 18, 18);
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  outline: none;
+  background: rgb(243, 243, 243);
+  border-radius: 2px;
+  padding: 1em;
+}
+.contactForm input {
+  width: 100%;
+  margin: 0px 0px 1em;
+}
+
+.contactForm textarea {
+  width: 100%;
+  margin: 0 0 1em 0;
+  line-height: 1.6;
+  min-height: 12rem;
+  resize: vertical;
+}
+.btn {
+  background: #121212 !important;
+  color: white !important;
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+  background: #f3f3f3;
+  color: #121212;
+  border-radius: 2px;
+  padding: .5em;
 }
