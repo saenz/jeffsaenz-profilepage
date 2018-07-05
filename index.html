@@ -17,6 +17,30 @@
 
   <title>jsaenz - avatar round</title>
 
+<style>
+.loader.loader-active {
+  display: inline-flex;
+  border: 2px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 2px solid #3498db;
+  width: 1rem;
+  height: 1rem;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  margin-right:.5rem;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
 </head>
 
 
@@ -107,7 +131,7 @@
                       Please provide a message.
                     </div>
                 </div>
-                <button id="contact-submit-btn" type="submit" class="btn btn-dark">Send</button>
+                <button id="contact-submit-btn" type="submit" class="btn btn-dark"><div class="loader"></div>Send</button>
               </form>
 
               <!-- action modal -->
@@ -115,7 +139,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="actionModalTitle">Contact - Send</h5>
+                      <h5 class="modal-title" id="actionModalTitle">Message - Sent</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -202,6 +226,12 @@
         if (this.checkValidity() === false) {
           form.addClass('was-validated');
         } else {
+
+          $("button", form).prop( "disabled", true );
+          $("button .loader", form).addClass("loader-active");
+          //$("button", form).text('Sending');
+          $("button", form).contents().last()[0].nodeValue='Sending';
+
           var url = "https://z3iokgsyoc.execute-api.us-west-1.amazonaws.com/dev/send";
           $.ajax({
             type: "POST", 
@@ -209,11 +239,16 @@
             xhrFields: {
               withCredentials: true
             },
-            contentType: 'application/x-www-form-urlencoded',
+            //contentType: 'application/x-www-form-urlencoded',
             data: form.serialize(),
             dataType: 'json'
           }).done(function() {
-            this.reset();
+            form[0].reset();
+            
+            $("button", form).contents().last()[0].nodeValue='Send';
+            $("button", form).prop( "disabled", false );
+            $("button .loader", form).removeClass("loader-active");
+            
             form.removeClass('was-validated');
             $("#actionModal").modal();
           }).fail(function() {
