@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <!--<meta http-equiv="x-ua-compatible" content="ie=edge">-->
@@ -40,6 +40,30 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+#alert-box {
+  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1270;
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+  -webkit-transition: transform ease-in .5s;
+  transition: transform ease-in .5s;
+}
+
+@media (min-width: 768px) {
+  #alert-box {
+    margin:0 auto;
+    width: 35rem;
+  }
+}
+
+#alert-box.show {
+  -webkit-transform: translateY(0%);
+  transform: translateY(0%);
+}
 </style>
 </head>
 
@@ -47,6 +71,15 @@
 <body>
 
   <div class="container">
+    <div id="alert-box">
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <strong>Alert</strong> There was an error attempting to submit the form. Please try again later.
+        <button type="button" class="close" data-dismissx="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+
     <nav class="navbar navbar-light bg-light">
       <a class="navbar-brand" href="#">
         <div class="avatar-wrapper d-inline-block align-top">
@@ -110,6 +143,7 @@
               </div>
 
               <form id="contact-form" class="contact-form needs-validation" novalidate>
+
                 <div class="form-group">
                   <!--<label for="fullname">Name</label>-->
                   <input type="text" class="form-control" id="fullname" aria-describedby="emailHelp" placeholder="Name" name="fullname" required>
@@ -219,9 +253,22 @@
   <script>
     $(function() {
 
-      $('#contact-form').submit(function() {
+      $(document).click(function(e) {
+        //if (!$(e.target).is('.alert')) {
+          $("#alert-box").removeClass('show');
+        //}
+      });
+
+      $("#alert-box .close").click(function() {
+        $("#alert-box").removeClass('show');
+      });
+
+      $('#contact-form').submit(function(event) {
         event.preventDefault();
         var form = $(this);
+
+        //$("#alert-box").addClass('show');
+        //return;
 
         if (this.checkValidity() === false) {
           form.addClass('was-validated');
@@ -252,9 +299,14 @@
             form.removeClass('was-validated');
             $("#actionModal").modal();
           }).fail(function() {
-            console.log('ajax call failed');
+            //console.log('ajax call failed');
+            $("button", form).contents().last()[0].nodeValue='Send';
+            $("button", form).prop( "disabled", false );
+            $("button .loader", form).removeClass("loader-active");
+
+            $("#alert-box").addClass('show');
           }).always(function() {
-            console.log( "finished" );
+            //console.log( "finished" );
           });
         }
 
