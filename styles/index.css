@@ -118,7 +118,7 @@ h1 {
   font-size: 1rem;
   color: #3C4043;
   letter-spacing: 0;
-  padding: 16px;
+  padding: 0;
 }
 .card-body li {
   margin-left: 0;
